@@ -1,0 +1,209 @@
+#import-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.img-div {
+  margin-right: auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .img-div {
+    width: 45%;
+  }
+}
+
+@media (min-width: 992px) {
+  .img-div {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1260px) {
+  .img-div {
+    width: 45%;
+  }
+}
+
+.card {
+  position: relative;
+}
+
+.card-active {
+  position: relative;
+}
+
+.card-img {
+  width: 100%;
+  max-width: 1080px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: calc(100vh - 210px);
+}
+
+.card:not(.slick-current) {
+  -webkit-transform: scale(0.7);
+          transform: scale(0.7);
+}
+
+.info-area {
+  position: absolute;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.info-area h3 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.info-area ul {
+  margin-bottom: 50px;
+  text-align: center;
+  list-style: none;
+}
+
+@media (max-width: 765px) {
+  .info-area {
+    bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .info-area {
+    width: 40%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: none;
+    height: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .info-area {
+    width: 45%;
+  }
+}
+
+@media (min-width: 1260px) {
+  .info-area {
+    width: 45%;
+    right: 160px;
+  }
+}
+
+@media (max-width: 765px) {
+  .info-area > div {
+    width: 100%;
+  }
+}
+
+.slick-slide {
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.17, 0.32, 0.72, 1.17);
+  transition: -webkit-transform 0.5s cubic-bezier(0.17, 0.32, 0.72, 1.17);
+  transition: transform 0.5s cubic-bezier(0.17, 0.32, 0.72, 1.17);
+  transition: transform 0.5s cubic-bezier(0.17, 0.32, 0.72, 1.17), -webkit-transform 0.5s cubic-bezier(0.17, 0.32, 0.72, 1.17);
+}
+
+@-webkit-keyframes errorDivAn {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  33% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  66% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes errorDivAn {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  33% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  66% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@-webkit-keyframes errorButtonAn {
+  0% {
+    background-color: #30ECF2;
+  }
+  33% {
+    background-color: red;
+  }
+  66% {
+    background-color: red;
+  }
+  100% {
+    background-color: #30ECF2;
+  }
+}
+
+@keyframes errorButtonAn {
+  0% {
+    background-color: #30ECF2;
+  }
+  33% {
+    background-color: red;
+  }
+  66% {
+    background-color: red;
+  }
+  100% {
+    background-color: #30ECF2;
+  }
+}
+
+.error-div {
+  -webkit-animation-name: errorDivAn;
+          animation-name: errorDivAn;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.17, -0.31, 0.72, 1.17);
+          animation-timing-function: cubic-bezier(0.17, -0.31, 0.72, 1.17);
+}
+
+.error-button {
+  -webkit-animation-name: errorButtonAn;
+          animation-name: errorButtonAn;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: cubic-bezier(0.17, -0.31, 0.72, 1.17);
+          animation-timing-function: cubic-bezier(0.17, -0.31, 0.72, 1.17);
+}
+/*# sourceMappingURL=import-info.css.map */

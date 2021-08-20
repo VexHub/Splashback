@@ -1,0 +1,115 @@
+#import-info {
+    display: flex;
+    position: relative;
+}
+
+.img-div {
+    // height: calc(100vh - 210px);
+    // margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    @media (min-width: 768px) {
+        width: 45%;
+    }
+    @media (min-width: 992px) {
+        width: 50%;
+    }
+    @media (min-width: 1260px) {
+        width: 45%;
+    }
+    
+}
+
+.card {
+    position: relative;
+}
+
+.card-active {
+    position: relative;
+}
+
+.card-img {
+    width: 100%;
+    max-width: 1080px;
+    object-fit: contain;
+    // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    height: calc(100vh - 210px);
+}
+
+.card:not(.slick-current) {
+    transform: scale(0.7);
+}
+
+.info-area {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    right: 0;
+    h3 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    ul {
+        margin-bottom: 50px;
+        text-align: center;
+        list-style: none;
+    }
+    
+    background-color: rgba(255, 255,255, 0.5);
+    @media (max-width: 765px) {
+        bottom: 0;
+        
+    }
+    @media (min-width: 768px) {
+        width: 40%;
+        flex-direction: column;
+        background-color: none;
+        height: 100%;
+    }
+    @media (min-width: 992px) {
+        width: 45%;
+    }
+    @media (min-width: 1260px) {
+        width: 45%;
+        right: 160px;
+    }
+}
+
+.info-area > div {
+    @media (max-width: 765px) {
+        width: 100%;
+    }
+}
+
+.slick-slide {
+    transition: transform 0.5s cubic-bezier(.17,.32,.72,1.17);
+    
+}
+
+@keyframes errorDivAn {
+    0% {transform: rotate(0deg);}
+    33% {transform: rotate(5deg);}
+    66% {transform: rotate(-5deg);}
+    100% {transform: rotate(0deg);}
+}
+
+@keyframes errorButtonAn {
+    0% {background-color: #30ECF2;}
+    33% {background-color: red;}
+    66% {background-color: red;}
+    100% {background-color: #30ECF2;}
+}
+
+.error-div {
+    animation-name: errorDivAn;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(.17,-0.31,.72,1.17);
+}
+
+.error-button {
+    animation-name: errorButtonAn;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(.17,-0.31,.72,1.17);
+}

@@ -1,0 +1,48 @@
+@import 'colors.scss';
+
+#email-bar {
+    display: inline;
+    justify-content: center;
+   
+}
+
+#email-input {
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    padding-left: 15px;
+    outline: none;
+    border-color: #0CA3A8;
+    &:focus {
+        border-color: #30ECF2;
+        & + .email-button {
+            background-color: #30ECF2;
+        }
+    }
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    @media (min-width: 768px) {
+        width: 250px;
+    }
+    @media (min-width: 992px) {
+        width: 300px;
+    }
+}
+
+.email-button {
+    position: relative;
+    border: none;
+    background-color: #0CA3A8;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}

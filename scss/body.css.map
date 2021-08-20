@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,IAAI;AACJ,IAAI,CAAC,CAAC,CAAC;EACH,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,WAAW,EAAE,oBAAoB;EACjC,QAAQ,EAAE,MAAM;CACnB",
+    "sources": [
+        "body.scss",
+        "colors.scss"
+    ],
+    "names": [],
+    "file": "body.css"
+}

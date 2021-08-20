@@ -1,0 +1,146 @@
+#index-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-content: center;
+    border-bottom: 5px #46CFD4 solid;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+.banner-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#banner-h1-l1 {
+    padding-left: 15px;
+    font-weight: 600;
+}
+
+#banner-h1-l2 {
+    font-weight: 400;
+}
+
+.menu-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 11;
+    @media (min-width: 1260px) {
+        z-index: 1;
+    }
+}
+
+#menu-button {
+    // position: absolute;
+    background-color: #126163;
+    border-radius: 10px;
+    border: none;
+    z-index: 11;
+    &:hover {
+        background-color: #0CA3A8;
+    }
+    
+}
+
+.hamburger-inner {
+    font-size: 2rem;
+    color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.menu-side {
+    background-color: #126163;
+    box-sizing: border-box;
+    width: 260px;
+    position: absolute;
+    z-index: 5;
+    height: 100vh;
+    right: -260px;
+    transition: right 0.5s ease-in;
+    top: 0;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    overflow-y: scroll;
+    h3, h5 {
+        color: #fff;
+        text-align: center;
+    }
+    h3 {
+        font-size: 1.2rem;
+        text-decoration: underline;
+    }
+    h5 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+    @media (min-width: 1260px) {
+        padding-top: 20px;
+        right: 0;
+    }
+
+}
+
+.menu-open {
+    right: 0px !important ;
+}
+
+.side-ul {
+    padding-top: 10px;
+    list-style: none;
+    border-top: 2px #126163 solid;
+    padding-bottom: 10px;
+}
+
+.side-img-li {
+    float: left;
+}
+
+.side-img {
+    float: left;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 15px;
+}
+
+.side-info {
+    color: #fff;
+}
+
+.side-link-li {
+    margin-top: 11px;
+}
+
+.side-link {
+    color: #30ECF2;
+}
+
+.email-div {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-color: #0A5457;
+    margin-bottom: 10px;
+}
+
+.email-div h4 {
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.3rem;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.email-div:hover h4 {
+    background-color: #46CFD4;
+}
