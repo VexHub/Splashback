@@ -13,6 +13,13 @@
 
 #button-bar-two {
   position: absolute;
+  top: 0;
+}
+
+@media (max-width: 767px) {
+  #button-bar-two {
+    right: 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -76,11 +83,11 @@
 }
 
 #plus-horizontal.tick {
-  top: 37px;
-  left: 6px;
+  top: 41px;
+  left: 14px;
   -webkit-transform: rotate(55deg);
           transform: rotate(55deg);
-  width: 35px;
+  width: 25px;
 }
 
 #next-button {

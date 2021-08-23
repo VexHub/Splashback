@@ -44,10 +44,15 @@
     border-radius: 10px;
     border: none;
     z-index: 11;
+    transition: background-color 0.5s ease-in;
     &:hover {
         background-color: #0CA3A8;
     }
     
+}
+
+.menu-button.highlight {
+    background-color: #0CA3A8 !important;
 }
 
 .hamburger-inner {

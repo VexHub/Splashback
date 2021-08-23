@@ -1,48 +1,41 @@
-$(document).ready(function(){
-    $('.img-div').slick({
-        slidesToShow: 2,
-        centerMode: true,
-        centerPadding: '20px',
-        adaptiveHeight: true,
-        rtl: true,
-        nextArrow: "",
-        prevArrow: "\n            <button id=\"next-button\" class=\"bar-button\">\n                <span id=\"next-tp\" class=\"next-span icon-span\"></span>\n                <span id=\"next-bt\" class=\"next-span icon-span\"></span>\n            </button>"
-            ,
-        appendArrows: $('.button-bar-two'),
-        infinite: true,
-        draggable: false,
-        // initialSlide: 3
-    });
-    loadCarousel();
-    loadStorage();
-    $('.img-div').on('afterChange', function () {
-        prevButton();
-        loadInfo();
-        emailDeAnimate();
-    });
-    cloneArray = $('.slick-cloned');
-    cloneOne = cloneArray[3].childNodes[1];
-    cloneTwo = cloneArray[0].childNodes[1];
-    cloneThree = cloneArray[1].childNodes[1];
-    cloneFour = cloneArray[2].childNodes[1];
-
-    setInterval(function () {window.onresize = $('.card-img').css('height', parseInt(window.innerHeight) - 120 + 'px')}, 500);
-
-});
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-document.getElementById('plus-button').addEventListener('click', function () {
-  arr = JSON.parse(localStorage.getItem(currentEmail));
 
-  if (arr !== null) {
+
+document.getElementById('plus-button').addEventListener('click', function () {
+  let cookieArr;
+  if(cookieTest == true) {
+    cookieArr = Cookies.get(currentEmail);
+  } else {
+    cookieArr = JSON.parse(localStorage.getItem(currentEmail));
+  }
+  
+
+  if (cookieArr != null) {
+    if(cookieTest == true) {
+      arr = JSON.parse(cookieArr) || null;
+    } else {
+      let temp = [];
+      temp.push(cookieArr);
+      arr = temp;
+    }
+    if(Array.isArray(arr) == false) {
+      let temp = [];
+      temp.push(arr);
+      arr = temp;
+    }
+
     if (!checkStorage(arr, imgList[currentImg - 1].id)) {
       createSideUl(sideEmailCount, currentImg - 1);
       emailAnimate();
+      menuHighlight();
     }
   } else {
     createSideUl(sideEmailCount, currentImg - 1);
@@ -51,29 +44,32 @@ document.getElementById('plus-button').addEventListener('click', function () {
 
   storageSetup();
 });
-var emailLoad = true;
-var loadV = true;
-var cloneArray = {};
-var cloneOne = '';
-var cloneTwo = '';
-var cloneThree = '';
-var cloneFour = '';
-var imgList = [];
-var currentCard = 1;
-var cycleNum = 0;
-var currentEmail = "";
-var buttonCheck = 0;
-var sideUlCount = 0;
-var sideEmailCount = 0;
-var emailArray = [];
-var loadArray = [];
-var test;
+let cookieTest;
+let emailLoad = true;
+let loadV = true;
+let cloneArray = {};
+let cloneOne = '';
+let cloneTwo = '';
+let cloneThree = '';
+let cloneFour = '';
+let imgList = [];
+let currentCard = 1;
+let cycleNum = 0;
+let currentEmail = "";
+let buttonCheck = 0;
+let sideUlCount = 0;
+let sideEmailCount = 0;
+let emailArray = [];
+let loadArray = [];
+let test;
 var carouselSnippet = "\n        <img src=\"resources/test-img.jpg\" alt=\"\" class=\"card-img card-one-img\">\n        <i></i>\n        <div class=\"info-area\">\n            <h3 class=\"info-title\">Flower Bride</h3>\n            <ul class=\"info-ul\">\n                <li class=\"info-li\">\n                    <h5 class=\"info-key\">Creator:</h5>\n                    <p class=\"info-value\">J. Balla (J. Balla Photography)</p>\n                </li>\n                <li class=\"info-li\">\n                    <h5 class=\"info-key\">Dimensions:</h5>\n                    <p class=\"info-value\">3070 \xD7 4605</p>\n                </li>\n            </ul>\n        </div> \n    </div\n  ";
 var sideUlSnippet = "<ul class=\"side-ul\">\n        <li class=\"side-img-li\">\n            <img src=\"\" class=\"side-img\">\n        </li>\n        <li class=\"side-info\"></li>\n        <li class=\"side-link-li\">\n            <a href=\"\" class=\"side-link\" target=\"_blank\">View Image</a>\n        </li>\n    </div> \n  ";
 var emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 document.getElementById('menu-button').addEventListener('click', function () {
   $('#menu-side').toggleClass('menu-open');
 });
+
+checkType();
 
 function loadCarousel() {
   return _loadCarousel.apply(this, arguments);
@@ -94,7 +90,7 @@ function _loadCarousel() {
             return setImgList();
 
           case 5:
-            getImage(imgList[0].id, cloneOne); //keep
+            getImage(imgList[0].id, cloneOne);
 
             getImage(imgList[1].id, cloneTwo);
             getImage(imgList[2].id, cloneThree);
@@ -131,7 +127,7 @@ document.getElementById('email-button').addEventListener('click', function () {
       $('#email-button').addClass('email-check');
       document.getElementById('email-button').textContent = "Change Email";
 
-      if (emailArray.indexOf(inputVal) === -1) {
+      if (emailArray.indexOf(inputVal) == -1) {
         emailArray.push(inputVal);
 
         if (emailLoad) {
@@ -261,15 +257,7 @@ function _prevButton() {
 
 function nextLoadHandle() {
   return _nextLoadHandle.apply(this, arguments);
-} //   function nextButton() {
-//     currentImg -= 1;
-//     if(currentCard > 1) {
-//         currentCard -= 1;
-//     } else {
-//         currentCard = 4;
-//     }
-//   }
-
+}
 
 function _nextLoadHandle() {
   _nextLoadHandle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
@@ -338,9 +326,18 @@ function storageSetup() {
 
 function saveStorage(email, id) {
   var idV = [];
-
-  if (localStorage.getItem(email) !== null) {
-    var locS = JSON.parse(localStorage.getItem(email));
+  let checkSaveStorage;
+  if (cookieTest == true) {
+    checkSaveStorage = Cookies.get(email);
+  } else {
+    checkSaveStorage = localStorage.getItem(email);
+  }
+  if (checkSaveStorage != undefined) {
+    if (cookieTest == true) {
+      var locS = JSON.parse(Cookies.get(email)) ;
+    } else {
+      var locS = JSON.parse(localStorage.getItem(email));
+    }
     idV = locS;
 
     if (!checkStorage(locS, id)) {
@@ -349,8 +346,12 @@ function saveStorage(email, id) {
   } else {
     idV.push(id);
   }
-
-  localStorage.setItem(email, JSON.stringify(idV));
+  if (cookieTest == true) {
+    Cookies.set(email, JSON.stringify(idV));
+  } else {
+    localStorage.setItem(email, JSON.stringify(idV));
+  }
+  
 }
 
 function checkStorage(arr, val) {
@@ -369,7 +370,7 @@ function checkEmail() {
 
 function createSideUl(emailNum, imgNum) {
   var ulObj = $(sideUlSnippet);
-  $('.email-div')[emailNum].append(ulObj[0]);
+  $('.email-div')[emailNum].appendChild(ulObj[0]);
   var tEl = $('.email-div')[emailNum];
   sideUlCount = $(tEl).children('.side-ul').length;
   $(tEl).children('.side-ul').children('.side-img-li').children('.side-img')[sideUlCount - 1].setAttribute('src', 'https://picsum.photos/id/'.concat(imgList[imgNum].id).concat('/50/50'));
@@ -386,110 +387,155 @@ function createSideDiv() {
 }
 
 function loadStorage() {
+  checkType();
   return _loadStorage.apply(this, arguments);
 }
 
 function _loadStorage() {
-  _loadStorage = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-    var obj, i, idList, a, check, b, _arr, subArr, c, finder, subArrJSON;
+  _loadStorage = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var obj, i, idList, a, check, _check, b, arr, subArr, c, finder, subArrJSON;
 
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context.prev = _context.next) {
           case 0:
             obj = {};
             i = 0;
             idList = [];
-            _context5.t0 = regeneratorRuntime.keys(localStorage);
 
-          case 4:
-            if ((_context5.t1 = _context5.t0()).done) {
-              _context5.next = 16;
+            if (!(cookieTest == true)) {
+              _context.next = 19;
               break;
             }
 
-            a = _context5.t1.value;
-            check = localStorage.getItem(a);
+            _context.t0 = regeneratorRuntime.keys(Cookies.get());
+
+          case 5:
+            if ((_context.t1 = _context.t0()).done) {
+              _context.next = 17;
+              break;
+            }
+
+            a = _context.t1.value;
+            check = Cookies.get(a);
 
             if (!(check !== null)) {
-              _context5.next = 12;
+              _context.next = 13;
               break;
             }
 
             obj[i] = [a, JSON.parse(check)];
             emailLoad = false;
-            _context5.next = 13;
+            _context.next = 14;
             break;
-
-          case 12:
-            return _context5.abrupt("break", 16);
 
           case 13:
+            return _context.abrupt("break", 17);
+
+          case 14:
             i++;
-            _context5.next = 4;
+            _context.next = 5;
             break;
 
-          case 16:
-            i = 0;
-            _context5.t2 = regeneratorRuntime.keys(obj);
+          case 17:
+            _context.next = 32;
+            break;
 
-          case 18:
-            if ((_context5.t3 = _context5.t2()).done) {
-              _context5.next = 41;
+          case 19:
+            _context.t2 = regeneratorRuntime.keys(localStorage);
+
+          case 20:
+            if ((_context.t3 = _context.t2()).done) {
+              _context.next = 32;
               break;
             }
 
-            b = _context5.t3.value;
-            _arr = obj[i];
+            a = _context.t3.value;
+            _check = localStorage.getItem(a);
+
+            if (!(_check !== null)) {
+              _context.next = 28;
+              break;
+            }
+
+            obj[i] = [a, JSON.parse(_check)];
+            emailLoad = false;
+            _context.next = 29;
+            break;
+
+          case 28:
+            return _context.abrupt("break", 32);
+
+          case 29:
             i++;
-            currentEmail = _arr[0];
+            _context.next = 20;
+            break;
+
+          case 32:
+            i = 0;
+            _context.t4 = regeneratorRuntime.keys(obj);
+
+          case 34:
+            if ((_context.t5 = _context.t4()).done) {
+              _context.next = 56;
+              break;
+            }
+
+            b = _context.t5.value;
+            arr = obj[i];
+            i++;
+            currentEmail = arr[0];
             sideEmailCount = b;
             emailArray.push(currentEmail);
             createSideDiv();
-            subArr = _arr[1];
-            console.log(subArr);
-            _context5.t4 = regeneratorRuntime.keys(subArr);
+            subArr = arr[1];
+            _context.t6 = regeneratorRuntime.keys(subArr);
 
-          case 29:
-            if ((_context5.t5 = _context5.t4()).done) {
-              _context5.next = 39;
+          case 44:
+            if ((_context.t7 = _context.t6()).done) {
+              _context.next = 54;
               break;
             }
 
-            c = _context5.t5.value;
+            c = _context.t7.value;
             finder = subArr[c];
-            _context5.next = 34;
+            _context.next = 49;
             return $.getJSON("https://picsum.photos/id/" + finder + "/info");
 
-          case 34:
-            subArrJSON = _context5.sent;
+          case 49:
+            subArrJSON = _context.sent;
             loadSideUl(sideEmailCount, 0, subArrJSON);
             idList.push(subArr[c]);
-            _context5.next = 29;
+            _context.next = 44;
             break;
 
-          case 39:
-            _context5.next = 18;
+          case 54:
+            _context.next = 34;
             break;
 
-          case 41:
+          case 56:
             sideEmailCount = parseInt(sideEmailCount);
-            console.log(sideEmailCount);
-            console.log(_typeof(sideEmailCount));
 
-          case 44:
+          case 57:
           case "end":
-            return _context5.stop();
+            return _context.stop();
         }
       }
-    }, _callee5);
+    }, _callee);
   }));
   return _loadStorage.apply(this, arguments);
 }
 
+function menuHighlight() {
+  $('#menu-button').addClass('highlight');
+  setTimeout(function () {
+    $('#menu-button').removeClass('highlight');
+  }, 500)
+}
+
 function loadSideUl(emailNum, imgNum, subArr) {
   var ulObj = $(sideUlSnippet);
-  $('.email-div')[emailNum].append(ulObj[0]);
+  $('.email-div')[emailNum].appendChild(ulObj[0]);
   var tEl = $('.email-div')[emailNum];
   sideUlCount = $(tEl).children('.side-ul').length;
   $(tEl).children('.side-ul').children('.side-img-li').children('.side-img')[sideUlCount - 1].setAttribute('src', 'https://picsum.photos/id/'.concat(subArr.id).concat('/50/50'));
@@ -497,3 +543,44 @@ function loadSideUl(emailNum, imgNum, subArr) {
   $(tEl).children('.side-ul').children('.side-link-li').children('.side-link')[sideUlCount - 1].setAttribute('href', subArr.url);
   sideUlCount += 1;
 }
+
+function checkType() {
+  Cookies.set("check", "true");
+  if(Cookies.get("check") == undefined) {
+    cookieTest = false;
+  } else {
+    cookieTest = true;
+    Cookies.remove("check");
+  }
+}
+
+$(document).ready(function(){
+  $('.img-div').slick({
+      slidesToShow: 2,
+      centerMode: true,
+      centerPadding: '20px',
+      adaptiveHeight: true,
+      rtl: true,
+      nextArrow: "",
+      prevArrow: "\n            <button id=\"next-button\" class=\"bar-button\">\n                <span id=\"next-tp\" class=\"next-span icon-span\"></span>\n                <span id=\"next-bt\" class=\"next-span icon-span\"></span>\n            </button>"
+          ,
+      appendArrows: $('.button-bar-two'),
+      infinite: true,
+      draggable: false,
+  });
+  loadCarousel();
+  loadStorage();
+  $('.img-div').on('afterChange', function () {
+      prevButton();
+      loadInfo();
+      emailDeAnimate();
+  });
+  cloneArray = $('.slick-cloned');
+  cloneOne = cloneArray[3].childNodes[1];
+  cloneTwo = cloneArray[0].childNodes[1];
+  cloneThree = cloneArray[1].childNodes[1];
+  cloneFour = cloneArray[2].childNodes[1];
+
+  setInterval(function () {window.onresize = $('.card-img').css('height', parseInt(window.innerHeight) - 120 + 'px')}, 500);
+
+});

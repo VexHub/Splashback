@@ -1,7 +1,40 @@
+$(document).ready(function(){
+    $('.img-div').slick({
+        slidesToShow: 2,
+        centerMode: true,
+        centerPadding: '20px',
+        adaptiveHeight: true,
+        rtl: true,
+        nextArrow: "",
+        prevArrow: "\n            <button id=\"next-button\" class=\"bar-button\">\n                <span id=\"next-tp\" class=\"next-span icon-span\"></span>\n                <span id=\"next-bt\" class=\"next-span icon-span\"></span>\n            </button>"
+            ,
+        appendArrows: $('.button-bar-two'),
+        infinite: true,
+        draggable: false,
+    });
+    loadCarousel();
+    loadStorage();
+    $('.img-div').on('afterChange', function () {
+        prevButton();
+        loadInfo();
+        emailDeAnimate();
+    });
+    cloneArray = $('.slick-cloned');
+    cloneOne = cloneArray[3].childNodes[1];
+    cloneTwo = cloneArray[0].childNodes[1];
+    cloneThree = cloneArray[1].childNodes[1];
+    cloneFour = cloneArray[2].childNodes[1];
+
+    setInterval(function () {window.onresize = $('.card-img').css('height', parseInt(window.innerHeight) - 120 + 'px')}, 500);
+
+});
+
+
 
 document.getElementById('plus-button').addEventListener('click', function () {
-    arr = JSON.parse(localStorage.getItem(currentEmail));
-    if(arr !== null) {
+    cookieArr = Cookies.get(currentEmail);
+    if (cookieArr != null) {
+        arr = JSON.parse(cookieArr) || null;
         if(!checkStorage(arr, imgList[currentImg - 1].id)) {
             createSideUl(sideEmailCount, currentImg - 1);
             emailAnimate();
@@ -51,7 +84,7 @@ let cloneOne = '';
     cloneArray = $('.slick-cloned'); 
       await setImgList();
       await setImgList();
-      getImage(imgList[0].id, cloneOne); //keep
+      getImage(imgList[0].id, cloneOne);
       getImage(imgList[1].id, cloneTwo);
       getImage(imgList[2].id, cloneThree);
       getImage(imgList[3].id, cloneFour);
@@ -174,15 +207,6 @@ function emailDeAnimate() {
     }
   }
 
-//   function nextButton() {
-//     currentImg -= 1;
-//     if(currentCard > 1) {
-//         currentCard -= 1;
-//     } else {
-//         currentCard = 4;
-//     }
-//   }
-
   function numberString(a) {
     let b = "";
     if(a == 1) {
@@ -219,16 +243,17 @@ function emailDeAnimate() {
 
   function saveStorage(email, id) {
       let idV = [];
-      if (localStorage.getItem(email) !== null) {
-        let locS = JSON.parse(localStorage.getItem(email));
-        idV = locS; 
-        if (!checkStorage(locS, id)) {
+      if (Cookies.get(email) != undefined) {
+        let locS = JSON.parse(Cookies.get(email));
+        idV = locS;
+        if(!checkStorage(locS, id)) {
             idV.push(id);
         }
       } else {
-        idV.push(id);
-    }
-      localStorage.setItem(email, JSON.stringify(idV)); 
+          idV.push(id);
+      }
+    
+    Cookies.set(email, JSON.stringify(idV));
   }
 
   function checkStorage(arr, val) {
@@ -269,16 +294,33 @@ async function loadStorage() {
     let obj = {};
       let i = 0;
       let idList = [];
-      for (var a in localStorage) {
-        let check = localStorage.getItem(a);
-        if(check !== null) {
-            obj[i] = [a, JSON.parse(check)];
-            emailLoad = false;
-        } else {
-            break;
-        }
-        i++; 
-     }
+
+    if(cookieTest = true) {
+        for (var a in Cookies.get()) {
+     		
+            let check = Cookies.get(a);
+            if(check !== null) {
+                obj[i] = [a, JSON.parse(check)];
+                emailLoad = false;
+            } else {
+                break;
+            }
+            i++; 
+         }
+    } else {
+        for (var a in localStorage) {
+            let check = localStorage.getItem(a);
+            if(check !== null) {
+                obj[i] = [a, JSON.parse(check)];
+                emailLoad = false;
+            } else {
+                break;
+            }
+            i++; 
+         }
+    }
+      
+
      i = 0;
      for (var b in obj) {
          let arr = obj[i];
@@ -288,7 +330,6 @@ async function loadStorage() {
         emailArray.push(currentEmail);
         createSideDiv();
         let subArr = arr[1];
-        console.log(subArr);
         for (var c in subArr) {
             let finder = subArr[c];
             let subArrJSON = await $.getJSON("https://picsum.photos/id/" + finder + "/info");
@@ -298,8 +339,6 @@ async function loadStorage() {
         
      }
         sideEmailCount = parseInt(sideEmailCount);
-        console.log(sideEmailCount);
-        console.log(typeof sideEmailCount);
     }
 
 function loadSideUl(emailNum, imgNum, subArr) {
@@ -312,3 +351,37 @@ function loadSideUl(emailNum, imgNum, subArr) {
     $(tEl).children('.side-ul').children('.side-link-li').children('.side-link')[sideUlCount - 1].setAttribute('href', subArr.url)
     sideUlCount += 1;
 }
+
+
+//
+
+$(document).ready(function(){
+    $('.img-div').slick({
+        slidesToShow: 2,
+        centerMode: true,
+        centerPadding: '20px',
+        adaptiveHeight: true,
+        rtl: true,
+        nextArrow: "",
+        prevArrow: "\n            <button id=\"next-button\" class=\"bar-button\">\n                <span id=\"next-tp\" class=\"next-span icon-span\"></span>\n                <span id=\"next-bt\" class=\"next-span icon-span\"></span>\n            </button>"
+            ,
+        appendArrows: $('.button-bar-two'),
+        infinite: true,
+        draggable: false,
+    });
+    loadCarousel();
+    loadStorage();
+    $('.img-div').on('afterChange', function () {
+        prevButton();
+        loadInfo();
+        emailDeAnimate();
+    });
+    cloneArray = $('.slick-cloned');
+    cloneOne = cloneArray[3].childNodes[1];
+    cloneTwo = cloneArray[0].childNodes[1];
+    cloneThree = cloneArray[1].childNodes[1];
+    cloneFour = cloneArray[2].childNodes[1];
+  
+    setInterval(function () {window.onresize = $('.card-img').css('height', parseInt(window.innerHeight) - 120 + 'px')}, 500);
+  
+  });
