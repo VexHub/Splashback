@@ -64,6 +64,7 @@ let loadArray = [];
 let test;
 var carouselSnippet = "\n        <img src=\"resources/test-img.jpg\" alt=\"\" class=\"card-img card-one-img\">\n        <i></i>\n        <div class=\"info-area\">\n            <h3 class=\"info-title\">Flower Bride</h3>\n            <ul class=\"info-ul\">\n                <li class=\"info-li\">\n                    <h5 class=\"info-key\">Creator:</h5>\n                    <p class=\"info-value\">J. Balla (J. Balla Photography)</p>\n                </li>\n                <li class=\"info-li\">\n                    <h5 class=\"info-key\">Dimensions:</h5>\n                    <p class=\"info-value\">3070 \xD7 4605</p>\n                </li>\n            </ul>\n        </div> \n    </div\n  ";
 var sideUlSnippet = "<ul class=\"side-ul\">\n        <li class=\"side-img-li\">\n            <img src=\"\" class=\"side-img\">\n        </li>\n        <li class=\"side-info\"></li>\n        <li class=\"side-link-li\">\n            <a href=\"\" class=\"side-link\" target=\"_blank\">View Image</a>\n        </li>\n    </div> \n  ";
+var error_snippet = "<p id=\"error-msg\" class=\"error-msg\">Error: Email not valid.</p>";
 var emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 document.getElementById('menu-button').addEventListener('click', function () {
   $('#menu-side').toggleClass('menu-open');
@@ -119,14 +120,17 @@ document.getElementById('email-button').addEventListener('click', function () {
   } else if (buttonCheck === 1) {
     var checkResult = checkEmail();
     var inputVal = document.getElementById('email-input').value;
-
+    if (inputVal != currentEmail) {
+      emailDeAnimate();
+      $('#error-msg').removeClass('error-shown');
+      $('#error-msg').remove();
+    }
     if (checkResult) {
       $('#plus-button').removeClass('email-hidden');
       currentEmail = inputVal;
       $('#email-input').addClass('email-hidden');
       $('#email-button').addClass('email-check');
       document.getElementById('email-button').textContent = "Change Email";
-
       if (emailArray.indexOf(inputVal) == -1) {
         emailArray.push(inputVal);
 
@@ -145,8 +149,15 @@ document.getElementById('email-button').addEventListener('click', function () {
       buttonCheck = 0;
     } else {
       $('#email-button').toggleClass('error-button');
+      var error_el = document.createElement("p");
+      error_el.setAttribute("id", "error-msg");
+      document.getElementById("plus-bar").appendChild(error_el);
+      $('#error-msg').addClass('error-msg');
+      document.getElementById("error-msg").textContent = "Error: Email not valid.";
+      $('#error-msg').addClass('error-shown');
       setTimeout(function () {
         $('#email-button').toggleClass('error-button');
+        
       }, 2000);
     }
   } else if (buttonCheck === 2) {}

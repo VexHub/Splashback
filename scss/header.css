@@ -55,6 +55,7 @@
   z-index: 11;
   -webkit-transition: background-color 0.5s ease-in;
   transition: background-color 0.5s ease-in;
+  cursor: pointer;
 }
 
 #menu-button:hover {
@@ -120,6 +121,12 @@
   list-style: none;
   border-top: 2px #126163 solid;
   padding-bottom: 10px;
+  padding-left: 15px;
+}
+
+.side-ul:hover {
+  -webkit-box-shadow: 5px 0 0 inset #46CFD4;
+          box-shadow: 5px 0 0 inset #46CFD4;
 }
 
 .side-img-li {
@@ -128,7 +135,6 @@
 
 .side-img {
   float: left;
-  margin-left: 15px;
   margin-right: 15px;
   border-radius: 15px;
 }
@@ -143,6 +149,7 @@
 
 .side-link {
   color: #30ECF2;
+  cursor: pointer;
 }
 
 .email-div {
